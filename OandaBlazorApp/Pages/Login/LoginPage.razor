@@ -1,0 +1,42 @@
+﻿@page "/Login"
+@inherits LoginBase
+
+    <div class="container">
+        @Text
+        <div class="row align-items-center" style="height:100vh">
+            <div class="col-4">
+            </div>
+            <div class="col-4">
+                <div class="card text-white bg-info mb-6">
+                    <div class="card-header">Welcome to Harsha's App</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Enter your OANDA token here</h5>
+                        <div class="form-group">
+                            <input type="text"
+                                   class="form-control"
+                                   @onfocusout="CheckForValidAccounts"
+                                   @bind="Token">
+                        </div>
+                        @if (Accounts.Count > 0)
+                        {
+                            <div>
+                                <h5 class="card-title">Select your account</h5>
+                                <ul class="list-group">
+                                    @foreach (var account in Accounts)
+                                    {
+                                        <li class="list-group-item list-group-item-info"
+                                            @onclick="@(e => SelectedAccount(account))">
+                                            @account
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <!-- f69905286e4de92f98e4cc119c5cab25-8abd3d6ef7ae161af9646d8f0f194802 -->
+            </div>
+        </div>
+    </div>
