@@ -6,18 +6,4 @@
         <h1>Hello, @context.User.Identity.Name!</h1>
         <p>You can only see this content if you're authenticated.</p>
     </Authorized>
-    <NotAuthorized>
-        Hahahahahaha
-    </NotAuthorized>
 </AuthorizeView>
-
-@code{
-
-    [Inject]
-    public AuthenticationStateProvider authenticationStateProvider { get; set; }
-
-        protected override Task OnInitializedAsync()
-        {
-            return base.OnInitializedAsync();
-        }
-}
