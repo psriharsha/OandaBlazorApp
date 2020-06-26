@@ -1,0 +1,59 @@
+﻿@inherits StockBase
+@using OandaBlazorApp.Misc
+
+@if (type == Models.ViewType.TABLE)
+{
+    <tr>
+        <td>
+            <button type="button"
+                    @onclick="(() => PlaceOrder(true))">
+                Buy
+            </button>
+        </td>
+        <td>
+            <span>
+                @stock.Bid.ShowAsPrice(type)
+            </span>
+        </td>
+        <td>
+            <b>
+                @stock.Name.DisplayStockName()
+            </b>
+        </td>
+        <td>
+            <span>
+                @stock.Ask.ShowAsPrice(type)
+            </span>
+        </td>
+        <td>
+            <button type="button"
+                    @onclick="(() => PlaceOrder(false))">
+                Sell
+            </button>
+        </td>
+    </tr>
+}
+else
+{
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+            <h4 class="card-title">@stock.Name.DisplayStockName()</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <button type="button"
+                            @onclick="(() => PlaceOrder(true))">
+                        Buy
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="button"
+                            @onclick="(() => PlaceOrder(false))">
+                        Sell
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
