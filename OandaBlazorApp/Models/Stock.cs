@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OandaBlazorApp.Models
@@ -8,20 +9,20 @@ namespace OandaBlazorApp.Models
     public class Stock
     {
         private Double _bid = new double();
-        private string _name;
-        public string Name 
+        private string _Name;
+        public string name 
         { 
             get
             {
-                return _name;
+                return _Name;
             }
             set
             {
-                _name = value.Replace('_', '/');
+                _Name = value.Replace('_', '/');
             }
         }
-        public string Currency { get; set; }
-        public Double Bid {
+        public string currency { get; set; }
+        public Double bid {
             get
             {
                 return _bid;
@@ -29,21 +30,27 @@ namespace OandaBlazorApp.Models
             set
             {
                 if (_bid == value)
-                    Direction = 0;
+                    direction = 0;
                 else if (_bid < value)
-                    Direction = -1;
+                    direction = -1;
                 else
-                    Direction = 1;
+                    direction = 1;
                 if (_bid != value)
                 {
                     _bid = value;
                 }
             }
         }
-        public Double Ask { get; set; }
-        public string Type { get; set; }
-        public int Direction { get; set; } = 0;
-        public bool IsSelected { get; set; }
-        public bool IsHidden { get; set; }
+        public Double ask { get; set; }
+        public string type { get; set; }
+        public int direction { get; set; } = 0;
+        public bool isSelected { get; set; }
+        public bool isHidden { get; set; }
     }
+
+    public class Instruments
+    {
+        public Stock[] instruments { get; set; }
+    }
+
 }

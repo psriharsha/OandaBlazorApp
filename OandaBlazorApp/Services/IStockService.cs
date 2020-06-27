@@ -8,6 +8,6 @@ namespace OandaBlazorApp.Services
 {
     public interface IStockService
     {
-        Task<Stock> GetStocks();
+        Task<IEnumerable<Stock>> GetStocks(string stockType);
     }
 }

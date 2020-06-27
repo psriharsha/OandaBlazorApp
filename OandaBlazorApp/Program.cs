@@ -14,6 +14,7 @@ using System.Net.Http.Json;
 using OandaBlazorApp.Pages.Login;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
+using OandaBlazorApp.Pages.Product;
 
 namespace OandaBlazorApp
 {
@@ -34,6 +35,10 @@ namespace OandaBlazorApp
             builder.Services.AddHttpClient<ILoginService, LoginService>(client =>
             {
                 client.BaseAddress = new Uri("https://api-fxpractice.oanda.com/v3/accounts");
+            });
+            builder.Services.AddHttpClient<IStockService, ProductService>(client =>
+            {
+                client.BaseAddress = new Uri("https://api-fxpractice.oanda.com");
             });
 
             await builder.Build().RunAsync();

@@ -1,0 +1,26 @@
+﻿@page "/"
+@using OandaBlazorApp.Pages.Product
+@inherits HomeBase
+@attribute [Authorize]
+
+@if (StocksList != null)
+{
+    if (viewType == Models.ViewType.TABLE)
+    {
+    <table class="table table-active">
+        @foreach (Models.Stock stock in StocksList)
+        {
+        <ProductComponent stock="stock" type="viewType"></ProductComponent>
+        }
+    </table>
+    }
+    else
+    {
+    <div class="row">
+        @foreach (Models.Stock stock in StocksList)
+        {
+        <ProductComponent stock="stock" type="viewType"></ProductComponent>
+        }
+    </div>
+    }
+}

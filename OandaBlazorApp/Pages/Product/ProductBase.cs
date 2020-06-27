@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OandaBlazorApp.Pages.Stock
+namespace OandaBlazorApp.Pages.Product
 {
-    public class StockBase
+    public class ProductBase : ComponentBase
     {
         [Parameter]
         public OandaBlazorApp.Models.Stock stock { get; set; }
