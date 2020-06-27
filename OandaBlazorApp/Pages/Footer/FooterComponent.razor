@@ -1,0 +1,20 @@
+﻿@inherits FooterBase
+
+<footer class="footer bg-primary">
+    <div class="container">
+        <p class="text-right">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button disabled="@(viewType==ViewType.CARD)" 
+                        type="button" class="btn btn-secondary"
+                        @onclick="(() => ChangeViewType(ViewType.CARD))">
+                    CARD
+                </button>
+                <button disabled="@(viewType==ViewType.TABLE)" 
+                        type="button" class="btn btn-secondary"
+                        @onclick="(() => ChangeViewType(ViewType.TABLE))">
+                    TABLE
+                </button>
+            </div>
+        </p>
+    </div>
+</footer>

@@ -1,26 +1,35 @@
 ﻿@page "/"
 @using OandaBlazorApp.Pages.Product
+@using OandaBlazorApp.Pages.Footer
 @inherits HomeBase
 @attribute [Authorize]
 
-@if (StocksList != null)
-{
-    if (viewType == Models.ViewType.TABLE)
-    {
-    <table class="table table-active">
-        @foreach (Models.Stock stock in StocksList)
-        {
-        <ProductComponent stock="stock" type="viewType"></ProductComponent>
-        }
-    </table>
-    }
-    else
-    {
-    <div class="row">
-        @foreach (Models.Stock stock in StocksList)
-        {
-        <ProductComponent stock="stock" type="viewType"></ProductComponent>
-        }
-    </div>
-    }
-}
+    <div class="main">
+
+        <div class="content px-4">
+            <div class="row">
+                @if (StocksList != null)
+                {
+                    if (viewType == Models.ViewType.TABLE)
+                    {
+                        <div class="col-3">
+                            <table class="table table-active text-center">
+                                @foreach (Models.Stock stock in StocksList)
+                                {
+                                    <ProductComponent stock="stock" type="viewType"></ProductComponent>
+                                }
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (Models.Stock stock in StocksList)
+                        {
+                            <ProductComponent stock="stock" type="viewType"></ProductComponent>
+                        }
+                    }
+                }
+                </div>
+            </div>
+        </div>
+    <FooterComponent viewType="viewType" OnChangeViewType="((type) => viewType = type)" />

@@ -15,7 +15,6 @@ namespace OandaBlazorApp.Pages.Login
     {
         private readonly HttpClient httpClient;
         private readonly ILocalStorageService localStorage;
-        private Settings settings;
 
         public LoginService(HttpClient httpClient, ILocalStorageService localStorage)
         {
@@ -33,7 +32,7 @@ namespace OandaBlazorApp.Pages.Login
                     if (result.accounts.Length > 0)
                         return result.accounts.Select(r => r.id).ToList();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                 }
             }
