@@ -26,7 +26,7 @@ namespace OandaBlazorApp.Pages.Product
             var accountId = await localStorage.GetItemAsync<string>("api-account-id");
             var Token = await localStorage.GetItemAsync<string>("api-token");
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-            var instruments = await httpClient.GetFromJsonAsync<Models.Instruments>($"v3/accounts/{accountId}/instruments");
+            var instruments = await httpClient.GetFromJsonAsync<Models.Instruments>($"v3/accounts/{accountId}/instruments?instruments=USD_CAD");
             IEnumerable<Models.Stock> stocks = instruments.instruments;
             if (!string.IsNullOrEmpty(stockType) && stocks != null)
                 stocks = stocks.Where(s => s.type == stockType);

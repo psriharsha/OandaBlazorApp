@@ -12,6 +12,18 @@
         </td>
         <td>
             <b>
+                @if (stock.direction == -1)
+                {
+                    <BiArrowDown2 />
+                }
+                else if (stock.direction == 1)
+                {
+                    <BiArrowUp2 />
+                }
+                else
+                {
+                    <span>&nbsp;&nbsp;</span>
+                }
                 @stock.name.DisplayStockName()
             </b>
         </td>
@@ -21,13 +33,46 @@
                 @((MarkupString)stock.ask.ShowAsPrice(type))
             </div>
         </td>
+        <td>
+            @if (IsInContainer)
+            {
+                <BiUpload />
+            }
+            else
+            {
+                <BiDownload />
+            }
+        </td>
     </tr>
 }
 else
 {
     <div class="card text-white mb-3" style="max-width: 20rem;">
         <div class="card-header">
-            <h4 class="card-title">@stock.name.DisplayStockName()</h4>
+            <span class="card-title font-weight-bold">
+                @if(stock.direction == -1)
+                {
+                    <BiArrowDown2/>
+                }
+                else if (stock.direction == 1)
+                {
+                    <BiArrowUp2/>
+                }
+                else
+                {
+                    <span>&nbsp;&nbsp;</span>
+                }
+                @stock.name.DisplayStockName()
+            </span>
+            <span class="float-right">
+                @if (IsInContainer)
+                {
+                    <BiUpload/>
+                }else
+                {
+                    <BiDownload/>
+                }
+            </span>
         </div>
         <div class="card-body">
             <div class="row">

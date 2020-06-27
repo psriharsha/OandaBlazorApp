@@ -149,6 +149,9 @@ app {
     line-height: 60px;
     color: #fff;
 }
+.blazor-icon{
+    color: #fff;
+}
 
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {

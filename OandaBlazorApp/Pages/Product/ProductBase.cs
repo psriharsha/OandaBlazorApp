@@ -15,6 +15,8 @@ namespace OandaBlazorApp.Pages.Product
         public ViewType type { get; set; }
         [Parameter]
         public EventCallback Order { get; set; }
+        [Parameter]
+        public Boolean IsInContainer { get; set; } = true;
 
         protected void PlaceOrder(Boolean isBuy)
         {
