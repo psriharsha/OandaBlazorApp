@@ -7,7 +7,7 @@
         <td>
             <div class="btn btn-success"
                     @onclick="(() => PlaceOrder(true))">
-                @(stock.bid.ShowAsPrice(type))
+                @((MarkupString)stock.bid.ShowAsPrice(type))
             </div>
         </td>
         <td>
@@ -18,7 +18,7 @@
         <td>
             <div class="btn btn-danger"
                     @onclick="(() => PlaceOrder(false))">
-                @(stock.ask.ShowAsPrice(type))
+                @((MarkupString)stock.ask.ShowAsPrice(type))
             </div>
         </td>
     </tr>
