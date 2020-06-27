@@ -9,17 +9,9 @@ namespace OandaBlazorApp.Models
     public class Stock
     {
         private Double _bid = new double();
-        private string _Name;
         public string name 
-        { 
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                _Name = value.Replace('_', '/');
-            }
+        {
+            get; set;
         }
         public string currency { get; set; }
         public Double bid {

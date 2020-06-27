@@ -28,7 +28,7 @@ namespace OandaBlazorApp.Pages.Login
                 try
                 {
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                    var result = await httpClient.GetFromJsonAsync<AccountsData>("");
+                    var result = await httpClient.GetFromJsonAsync<AccountsData>($"v3/accounts");
                     if (result.accounts.Length > 0)
                         return result.accounts.Select(r => r.id).ToList();
                 }
