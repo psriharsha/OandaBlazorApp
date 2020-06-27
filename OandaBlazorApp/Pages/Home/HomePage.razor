@@ -7,12 +7,16 @@
 {
     if (viewType == Models.ViewType.TABLE)
     {
-    <table class="table table-active">
-        @foreach (Models.Stock stock in StocksList)
-        {
-        <ProductComponent stock="stock" type="viewType"></ProductComponent>
-        }
-    </table>
+    <div class="row">
+        <div class="col-2">
+            <table class="table table-active text-center">
+                @foreach (Models.Stock stock in StocksList)
+                {
+                    <ProductComponent stock="stock" type="viewType"></ProductComponent>
+                }
+            </table>
+        </div>
+    </div>
     }
     else
     {

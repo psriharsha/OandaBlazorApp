@@ -13,7 +13,7 @@ namespace OandaBlazorApp.Pages.Home
         public IEnumerable<Models.Stock> StocksList { get; set; }
         [Inject]
         public IStockService StockService { get; set; }
-        public ViewType viewType { get; set; } = ViewType.CARD;
+        public ViewType viewType { get; set; } = ViewType.TABLE;
 
         protected override async Task OnInitializedAsync()
         {
