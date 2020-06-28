@@ -18,21 +18,26 @@ namespace OandaBlazorApp.Misc
             {
                 stringValue = "0.0000";
             }
-            componentValue.Append("<sup>");
-            componentValue.Append(stringValue.Substring(0, stringValue.Length - 3));
-            componentValue.Append("</sup>");
-            if (type == ViewType.TABLE)
+            if (type == ViewType.CARD)
             {
-                componentValue.Append("<span class=\"font-weight-bold\">");
-            }else if (type == ViewType.CARD)
-            {
+                componentValue.Append(stringValue.Substring(0, stringValue.Length - 3));
                 componentValue.Append("<span class=\"stock-price\">");
+                componentValue.Append(stringValue.Substring(stringValue.Length - 3, 2));
+                componentValue.Append("</span>");
+                componentValue.Append(stringValue.Substring(stringValue.Length - 1, 1));
             }
-            componentValue.Append(stringValue.Substring(stringValue.Length - 3, 2));
-            componentValue.Append("</span>");
-            componentValue.Append("<sup>");
-            componentValue.Append(stringValue.Substring(stringValue.Length - 1, 1));
-            componentValue.Append("</sup>");
+            else if (type == ViewType.TABLE)
+            {
+                componentValue.Append("<sup>");
+                componentValue.Append(stringValue.Substring(0, stringValue.Length - 3));
+                componentValue.Append("</sup>");
+                componentValue.Append("<span class=\"font-weight-bold\">");
+                componentValue.Append(stringValue.Substring(stringValue.Length - 3, 2));
+                componentValue.Append("</span>");
+                componentValue.Append("<sup>");
+                componentValue.Append(stringValue.Substring(stringValue.Length - 1, 1));
+                componentValue.Append("</sup>");
+            }
             Console.WriteLine(componentValue.ToString());
             return componentValue.ToString();
         }
