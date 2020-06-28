@@ -8,6 +8,6 @@ namespace OandaBlazorApp.Services
 {
     public interface IPriceStreamerService
     {
-        Task<IEnumerable<Price>> StreamPrices(IEnumerable<Stock> stocks);
+        Task StreamPrices(IEnumerable<Stock> stocks);
     }
 }

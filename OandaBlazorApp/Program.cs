@@ -35,6 +35,7 @@ namespace OandaBlazorApp
             var host = builder.Build();
             var localStorage = host.Services.GetRequiredService<ISyncLocalStorageService>();
             var token = localStorage.GetItem<string>("api-token");
+            AuthenticationHeaderValue authenticationHeaderValue = new AuthenticationHeaderValue("bearer", token);
 
             builder.Services.AddHttpClient<ILoginService, LoginService>(client =>
             {
@@ -42,13 +43,14 @@ namespace OandaBlazorApp
             });
             builder.Services.AddHttpClient<IStockService, ProductService>(client =>
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+                client.DefaultRequestHeaders.Authorization = authenticationHeaderValue;
                 client.BaseAddress = new Uri("https://api-fxpractice.oanda.com");
             });
             builder.Services.AddHttpClient<IPriceStreamerService, PriceStreamerService>(client =>
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
-                client.BaseAddress = new Uri("https://stream-fxpractice.oanda.com");
+                client.DefaultRequestHeaders.Authorization = authenticationHeaderValue;
+                client.BaseAddress = new Uri("https://api-fxpractice.oanda.com");
+                //client.BaseAddress = new Uri("https://stream-fxpractice.oanda.com");
             });
 
             await builder.Build().RunAsync();

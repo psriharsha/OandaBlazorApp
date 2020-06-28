@@ -24,7 +24,6 @@ namespace OandaBlazorApp.Pages.Product
         public async Task<IEnumerable<Models.Stock>> GetStocks(string stockType)
         {
             var accountId = await localStorage.GetItemAsync<string>("api-account-id");
-            var Token = await localStorage.GetItemAsync<string>("api-token");
             var instruments = await httpClient.GetFromJsonAsync<Models.Instruments>($"v3/accounts/{accountId}/instruments");
             IEnumerable<Models.Stock> stocks = instruments.instruments;
             if (!string.IsNullOrEmpty(stockType) && stocks != null)

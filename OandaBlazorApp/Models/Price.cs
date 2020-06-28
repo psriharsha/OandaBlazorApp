@@ -9,11 +9,19 @@ namespace OandaBlazorApp.Models
     {
         public Side[] bids { get; set; }
         public Side[] asks { get; set; }
+        public string instrument { get; set; }
     }
 
     public class Side
     {
-        public double price { get; set; }
+        public string price { get; set; }
         public Int64 liquidity { get; set; }
+    }
+
+    public class PriceData
+    {
+        public Price[] prices { get; set; }
+        public string time { get; set; }
+
     }
 }
