@@ -15,6 +15,7 @@ using OandaBlazorApp.Pages.Login;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
 using OandaBlazorApp.Pages.Product;
+using BlazorWidget;
 
 namespace OandaBlazorApp
 {
@@ -31,6 +32,7 @@ namespace OandaBlazorApp
             builder.Services.AddAuthorizationCore();
 
             builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddBlazorWidgetService();
 
             var host = builder.Build();
             var localStorage = host.Services.GetRequiredService<ISyncLocalStorageService>();

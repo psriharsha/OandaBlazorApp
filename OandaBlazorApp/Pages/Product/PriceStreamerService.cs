@@ -30,13 +30,7 @@ namespace OandaBlazorApp.Pages.Product
             try
             {
                 StringBuilder queryBuilder = new StringBuilder();
-                IEnumerable<string> stockNames = stocks.Select(s => s.name);
-                foreach(string name in stockNames)
-                {
-                    queryBuilder.Append(name);
-                    queryBuilder.Append(",");
-                }
-                string query = (queryBuilder.ToString()).Substring(0, queryBuilder.ToString().Length - 1);
+                string query = string.Join(",", stocks.Select(s => s.name));
                 var accountId = await localStorage.GetItemAsync<string>("api-account-id");
                 PriceData priceData = await httpClient.GetFromJsonAsync<PriceData>($"v3/accounts/{accountId}/pricing?instruments={query}");
                 foreach(var price in priceData.prices)

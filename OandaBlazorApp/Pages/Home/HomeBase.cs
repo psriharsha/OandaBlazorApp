@@ -24,23 +24,15 @@ namespace OandaBlazorApp.Pages.Home
         protected override async Task OnInitializedAsync()
         {
             StocksList = (await StockService.GetStocks("CURRENCY")).Take(10);
-            Timer timer = new Timer();
-            timer.Interval = 2000;
-            timer.Elapsed += PollPrices;
-            timer.AutoReset = false;
-            timer.Enabled = true;
+            StockService.OnPricesChanged += RefreshView;
 
             ViewType type = await localStorage.GetItemAsync<ViewType>("ViewType");
             await ChangeViewType(type);
         }
 
-        private async void PollPrices(object sender, ElapsedEventArgs e)
+        private void RefreshView(object sender, EventArgs e)
         {
-            if (null != StocksList)
-            {
-                await priceStreamerService.StreamPrices(StocksList);
-                StateHasChanged();
-            }
+            StateHasChanged();
         }
 
         protected async Task ChangeViewType(ViewType type)

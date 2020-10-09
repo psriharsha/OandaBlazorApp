@@ -1,94 +1,100 @@
-﻿@inherits ProductBase
+﻿@page "/stock"
+@inherits ProductBase
+
 @using OandaBlazorApp.Misc
 
-@if (type == Models.ViewType.TABLE)
+@if (stock != null)
 {
-    <tr>
-        <td>
-            <div class="btn btn-success"
-                    @onclick="(() => PlaceOrder(true))">
-                @((MarkupString)stock.bid.ShowAsPrice(type))
-            </div>
-        </td>
-        <td>
-            <b>
-                @if (stock.direction == -1)
-                {
-                    <BiArrowDown2 />
-                }
-                else if (stock.direction == 1)
-                {
-                    <BiArrowUp2 />
-                }
-                else
-                {
-                    <span>&nbsp;&nbsp;</span>
-                }
-                @stock.name.DisplayStockName()
-            </b>
-        </td>
-        <td>
-            <div class="btn btn-danger"
-                    @onclick="(() => PlaceOrder(false))">
-                @((MarkupString)stock.ask.ShowAsPrice(type))
-            </div>
-        </td>
-        <td>
-            @if (IsInContainer)
-            {
-                <BiUpload />
-            }
-            else
-            {
-                <BiDownload />
-            }
-        </td>
-    </tr>
-}
-else
-{
-    <div class="card text-white mb-2 ml-2" style="max-width: 20rem;">
-        <div class="card-header">
-            <span class="card-title font-weight-bold">
-                @if(stock.direction == -1)
-                {
-                    <BiArrowDown2/>
-                }
-                else if (stock.direction == 1)
-                {
-                    <BiArrowUp2/>
-                }
-                else
-                {
-                    <span>&nbsp;&nbsp;</span>
-                }
-                @stock.name.DisplayStockName()
-            </span>
-            <span class="float-right">
+    @if (type == Models.ViewType.TABLE)
+    {
+        <tr>
+            <td>
+                <div class="btn btn-success"
+                     @onclick="(() => PlaceOrder(true))">
+                    @((MarkupString)stock.bid.ShowAsPrice(type))
+                </div>
+            </td>
+            <td>
+                <b>
+                    @if (stock.direction == -1)
+                    {
+                        <BiArrowDown2 />
+                    }
+                    else if (stock.direction == 1)
+                    {
+                        <BiArrowUp2 />
+                    }
+                    else
+                    {
+                        <span>&nbsp;&nbsp;</span>
+                    }
+                    @stock.name.DisplayStockName()
+                </b>
+            </td>
+            <td>
+                <div class="btn btn-danger"
+                     @onclick="(() => PlaceOrder(false))">
+                    @((MarkupString)stock.ask.ShowAsPrice(type))
+                </div>
+            </td>
+            <td>
                 @if (IsInContainer)
                 {
-                    <BiUpload/>
-                }else
-                {
-                    <BiDownload/>
+                    <BiUpload @onclick="(() => Extract(true))" />
                 }
-            </span>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-6">
-                    <div class="btn btn-success"
-                            @onclick="(() => PlaceOrder(true))">
-                        @((MarkupString)stock.bid.ShowAsPrice(type))
+                else
+                {
+                    <BiDownload />
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <div class="card text-white mb-2 ml-2" style="max-width: 20rem;">
+            <div class="card-header">
+                <span class="card-title font-weight-bold">
+                    @if (stock.direction == -1)
+                    {
+                        <BiArrowDown2 />
+                    }
+                    else if (stock.direction == 1)
+                    {
+                        <BiArrowUp2 />
+                    }
+                    else
+                    {
+                        <span>&nbsp;&nbsp;</span>
+                    }
+                    @stock.name.DisplayStockName()
+                </span>
+                <span class="float-right">
+                    @if (IsInContainer)
+                    {
+                        <BiUpload @onclick="(() => Extract(true))" />
+                    }
+                    else
+                    {
+                        <BiDownload />
+                    }
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="btn btn-success"
+                             @onclick="(() => PlaceOrder(true))">
+                            @((MarkupString)stock.bid.ShowAsPrice(type))
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-danger"
-                            @onclick="(() => PlaceOrder(false))">
-                        @((MarkupString)stock.ask.ShowAsPrice(type))
+                    <div class="col-6">
+                        <div class="btn btn-danger"
+                             @onclick="(() => PlaceOrder(false))">
+                            @((MarkupString)stock.ask.ShowAsPrice(type))
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }

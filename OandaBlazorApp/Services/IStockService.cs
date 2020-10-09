@@ -8,6 +8,7 @@ namespace OandaBlazorApp.Services
 {
     public interface IStockService
     {
+        event EventHandler OnPricesChanged;
         Task<IEnumerable<Stock>> GetStocks(string stockType);
     }
 }
