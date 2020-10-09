@@ -16,18 +16,30 @@ namespace OandaBlazorApp.Pages.Home
         [Inject]
         public IStockService StockService { get; set; }
         [Inject]
-        public IPriceStreamerService priceStreamerService { get; set; }
-        [Inject]
         public ILocalStorageService localStorage { get; set; }
         public ViewType viewType { get; set; } = ViewType.TABLE;
+
+        protected string StatusMessage;
 
         protected override async Task OnInitializedAsync()
         {
             StocksList = (await StockService.GetStocks("CURRENCY")).Take(10);
             StockService.OnPricesChanged += RefreshView;
+            StockService.OnChildClosed += ChildClosed;
 
             ViewType type = await localStorage.GetItemAsync<ViewType>("ViewType");
             await ChangeViewType(type);
+        }
+
+        private void ChildClosed(object sender, string windowName)
+        {
+            StatusMessage = $"Stock <b>{windowName}</b> has been closed by user.";
+            StateHasChanged();
+            Timer timer = new Timer();
+            timer.Interval = 6000;
+            timer.Elapsed += (obj, e) => StatusMessage = "";
+            timer.AutoReset = false;
+            timer.Enabled = true;
         }
 
         private void RefreshView(object sender, EventArgs e)

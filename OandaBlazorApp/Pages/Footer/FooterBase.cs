@@ -13,6 +13,8 @@ namespace OandaBlazorApp.Pages.Footer
         public ViewType viewType { get; set; }
         [Parameter]
         public EventCallback<ViewType> OnChangeViewType { get; set; }
+        [Parameter]
+        public string Message { get; set; }
 
 
         protected async Task ChangeViewType(ViewType type)

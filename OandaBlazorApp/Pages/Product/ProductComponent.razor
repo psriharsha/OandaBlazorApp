@@ -44,7 +44,7 @@
                 }
                 else
                 {
-                    <BiDownload />
+                    <BiDownload @onclick="(() => Extract(false))" />
                 }
             </td>
         </tr>
@@ -75,7 +75,7 @@
                     }
                     else
                     {
-                        <BiDownload />
+                        <BiDownload @onclick="(() => Extract(false))" />
                     }
                 </span>
             </div>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="btn btn-danger"
+                        <div class="btn btn-danger float-right"
                              @onclick="(() => PlaceOrder(false))">
                             @((MarkupString)stock.ask.ShowAsPrice(type))
                         </div>

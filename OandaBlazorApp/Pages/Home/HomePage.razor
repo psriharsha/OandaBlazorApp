@@ -3,7 +3,9 @@
 @using OandaBlazorApp.Pages.Footer
 @inherits HomeBase
 @attribute [Authorize]
-
+    <div class="sidebar">
+        <NavMenu />
+    </div>
     <div class="main">
 
         <div class="content px-4">
@@ -32,4 +34,4 @@
                 </div>
             </div>
         </div>
-    <FooterComponent viewType="viewType" OnChangeViewType="((type) => ChangeViewType(type))" />
+    <FooterComponent viewType="viewType" Message="@StatusMessage" OnChangeViewType="((type) => ChangeViewType(type))" />

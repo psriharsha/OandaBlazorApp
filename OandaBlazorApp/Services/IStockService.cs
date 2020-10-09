@@ -8,7 +8,10 @@ namespace OandaBlazorApp.Services
 {
     public interface IStockService
     {
+        event EventHandler<string> OnChildClosed;
         event EventHandler OnPricesChanged;
         Task<IEnumerable<Stock>> GetStocks(string stockType);
+        Task PopOutStock(Stock stock);
+        void OnWidgetClosed(Object obj, string windowName);
     }
 }

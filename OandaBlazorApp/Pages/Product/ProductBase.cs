@@ -2,6 +2,7 @@
 using BlazorWidget;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.JSInterop;
 using OandaBlazorApp.Models;
 using OandaBlazorApp.Services;
 using System;
@@ -27,6 +28,8 @@ namespace OandaBlazorApp.Pages.Product
         public NavigationManager navManager { get; set; }
         [Inject]
         public IStockService stockService { get; set; }
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -38,8 +41,9 @@ namespace OandaBlazorApp.Pages.Product
                     var stocks = (await stockService.GetStocks("CURRENCY")).ToList();
                     stock = stocks.Find(s => s.name.Equals(stockName, StringComparison.OrdinalIgnoreCase));
                     stockService.OnPricesChanged += RefreshCard;
-                    
+                    IsInContainer = false;
                     type = ViewType.CARD;
+                    
                 }
             }
         }
@@ -54,9 +58,17 @@ namespace OandaBlazorApp.Pages.Product
 
         }
 
-        protected void Extract(bool isOut)
+        protected async Task Extract(bool isOut)
         {
-            WidgetService.Open($"http://localhost:50514/stock?stock={stock.name}", stock.name, 205, 216);
+            if (isOut)
+            {
+                await stockService.PopOutStock(stock);
+            }
+            else
+            {
+                stockService.OnWidgetClosed(this, stock.name);
+                await JSRuntime.InvokeVoidAsync("close");
+            }
         }
     }
 }
