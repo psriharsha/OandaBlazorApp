@@ -1,9 +1,9 @@
 ﻿@inherits FooterBase
 
 <footer class="footer bg-primary">
-    <div class="container">
-        <p>@Message</p>
-        <p class="text-right">
+    <div class="container" style="display: flex; justify-content:space-between">
+        <div style="flex-direction:column">@Message</div>
+        <div style="flex-direction:column">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button disabled="@(viewType==ViewType.CARD)" 
                         type="button" class="btn btn-secondary"
@@ -16,6 +16,6 @@
                     TABLE
                 </button>
             </div>
-        </p>
+        </div>
     </div>
 </footer>
