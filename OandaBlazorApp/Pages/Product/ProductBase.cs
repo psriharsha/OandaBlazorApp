@@ -1,5 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using BlazorWidget;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.JSInterop;
@@ -42,8 +41,7 @@ namespace OandaBlazorApp.Pages.Product
                     stock = stocks.Find(s => s.name.Equals(stockName, StringComparison.OrdinalIgnoreCase));
                     stockService.OnPricesChanged += RefreshCard;
                     IsInContainer = false;
-                    type = ViewType.CARD;
-                    
+                    type = ViewType.CARD;                    
                 }
             }
         }
@@ -66,7 +64,7 @@ namespace OandaBlazorApp.Pages.Product
             }
             else
             {
-                stockService.OnWidgetClosed(this, stock.name);
+                //stockService.OnWidgetClosed(this, stock.name);
                 await JSRuntime.InvokeVoidAsync("close");
             }
         }

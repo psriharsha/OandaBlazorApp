@@ -1,5 +1,4 @@
 ﻿using Blazored.LocalStorage;
-using BlazorWidget;
 using Microsoft.AspNetCore.Components;
 using OandaBlazorApp.Models;
 using OandaBlazorApp.Services;
@@ -34,6 +33,8 @@ namespace OandaBlazorApp.Pages.Product
             this.priceService = priceService;
             this.widgetService = widgetService;
             this.navigationManager = navigationManager;
+
+            widgetService.OnWindowClosed += OnWidgetClosed;
             Timer timer = new Timer();
             timer.Interval = 2000;
             timer.Elapsed += PollPrices;
@@ -65,7 +66,6 @@ namespace OandaBlazorApp.Pages.Product
         public async Task PopOutStock(Stock stock)
         {
             await widgetService.Open($"{navigationManager.BaseUri}/stock?stock={stock.name}", stock.name, 150, 335);
-            widgetService.OnWidgetClosed += OnWidgetClosed;
         }
 
         public void OnWidgetClosed(object sender, string e)

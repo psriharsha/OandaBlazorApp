@@ -15,7 +15,6 @@ using OandaBlazorApp.Pages.Login;
 using System.Net.Http.Headers;
 using Blazored.LocalStorage;
 using OandaBlazorApp.Pages.Product;
-using BlazorWidget;
 
 namespace OandaBlazorApp
 {
@@ -27,12 +26,12 @@ namespace OandaBlazorApp
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            builder.Services.AddScoped<IWidgetService, WidgetService>();
             builder.Services.AddOptions();
             builder.Services.AddAuthenticationCore();
             builder.Services.AddAuthorizationCore();
 
             builder.Services.AddBlazoredLocalStorage();
-            builder.Services.AddBlazorWidgetService();
 
             var host = builder.Build();
             var localStorage = host.Services.GetRequiredService<ISyncLocalStorageService>();

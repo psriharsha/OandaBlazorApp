@@ -12,6 +12,5 @@ namespace OandaBlazorApp.Services
         event EventHandler OnPricesChanged;
         Task<IEnumerable<Stock>> GetStocks(string stockType);
         Task PopOutStock(Stock stock);
-        void OnWidgetClosed(Object obj, string windowName);
     }
 }
